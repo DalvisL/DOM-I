@@ -40,3 +40,65 @@ const siteContent = { // DO NOT CHANGE THIS OBJECT
 };
 
 console.log('project wired!')
+
+const allAnchors = document.querySelectorAll('nav a');
+// adding text to nav anchors
+allAnchors.forEach((el, index)=> {
+  el.textContent = siteContent['nav'][`nav-item-${index+1}`];
+})
+// adding .italic class to nav links
+allAnchors.forEach(el => {
+  el.className = 'italic';
+});
+
+const h1 = document.querySelector('h1');
+h1.textContent = siteContent['cta']['h1'];
+
+const button = document.querySelector('button');
+button.textContent = siteContent['cta']['button'];
+
+// MAIN CONTENT
+const mainH4 = document.querySelectorAll('.main-content h4');
+const mainP = document.querySelectorAll('.text-content p');
+// creating array from the values at siteContent[mainContent]
+const mainContentFromObj = Object.values(siteContent['main-content']);
+const h4Content = [];
+const mainText = [];
+// pushes all even items in mainContentFromObj to h4Content and all odd objects to mainText
+for(let i = 0; i < mainContentFromObj.length; i++ ) {
+  if(i%2 !== 0) {
+    mainText.push(mainContentFromObj[i]);
+  } else h4Content.push(mainContentFromObj[i]);
+}
+
+// runs through each array and adds the corresponding content to each element
+mainH4.forEach((el, index) => {
+  el.textContent = h4Content[index];
+})
+mainP.forEach((el, index) => {
+  el.textContent = mainText[index];
+})
+
+// CONTACT SECTION 
+const contactH4 = document.querySelector('.contact h4');
+const contactText = document.querySelectorAll('.contact p');
+
+contactH4.textContent = siteContent['contact']['contact-h4'];
+contactText.forEach((el, index) => {
+  el.textContent = Object.values(siteContent['contact'])[index+1];
+} )
+
+// FOOTER SECTION
+
+const footerAnchor = document.querySelector('footer a');
+
+footerAnchor.textContent = siteContent['footer']['copyright'];
+footerAnchor.className = 'bold';
+
+// IMAGES
+
+const images = document.querySelectorAll('img');
+
+images.forEach((el, index) => {
+  el.src = Object.values(siteContent['images'])[index];
+})
